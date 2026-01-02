@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template_string, request, jsonify
 import google.generativeai as genai
 
-genai.configure(api_key=os.getenv("AIzaSyDzT4_j3YgnXY-Tcj0u9Ggp-iVFYzeb--A"))
+genai.configure(api_key=os.getenv("Your API Key"))
 
 app = Flask(__name__)
 
@@ -52,3 +52,4 @@ def api_chat():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
