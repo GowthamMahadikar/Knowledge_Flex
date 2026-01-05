@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Task Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            font-size: 13px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+        }
+        th {
+            background: #2c3e50;
+            color: #fff;
+            position: sticky;
+            top: 0;
+        }
+        tr:hover {
+            background: #f1f1f1;
+        }
+        .id {
+            font-family: monospace;
+            font-size: 11px;
+            word-break: break-all;
+        }
+        .output {
+            max-height: 100px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        .tag {
+            background: #e3eaf2;
+            padding: 2px 6px;
+            margin-right: 4px;
+            border-radius: 4px;
+            font-size: 11px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<h2>AI Task Management</h2>
+
+<table>
+<thead>
+<tr>
+    <th>ID</th>
+    <th>Prompt</th>
+    <th>Status</th>
+    <th>Priority</th>
+    <th>Assignee</th>
+    <th>Tags</th>
+    <th>Due Date</th>
+    <th>Version</th>
+    <th>Last Modified By</th>
+    <th>Updated At</th>
+    <th>AI Output</th>
+</tr>
+</thead>
+
+<tbody>
+{% for item in outputs %}
+<tr>
+    <td class="id">{{ item._id }}</td>
+    <td>{{ item.prompt }}</td>
+    <td>{{ item.status }}</td>
+    <td>{{ item.priority }}</td>
+    <td>{{ item.assignee or "—" }}</td>
+    <td>
+        {% if item.tags %}
+            {% for tag in item.tags %}
+                <span class="tag">{{ tag }}</span>
+            {% endfor %}
+        {% else %}
+            —
+        {% endif %}
+    </td>
+    <td>{{ item.due_date or "—" }}</td>
+    <td>{{ item.version }}</td>
+    <td>{{ item.last_modified_by }}</td>
+    <td>{{ item.updated_at }}</td>
+    <td><div class="output">{{ item.ai_output }}</div></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+</body>
+</html>
